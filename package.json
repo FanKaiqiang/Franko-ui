@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/FanKaiqiang/Franko-ui/issues"
   },
-  "homepage": "https://github.com/FanKaiqiang/Franko-ui#readme"
+  "homepage": "https://github.com/FanKaiqiang/Franko-ui#readme",
+  "dependencies": {
+    "vue": "^2.5.21"
+  }
 }
