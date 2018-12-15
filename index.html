@@ -32,18 +32,31 @@
             font-size: var(--font-size);
         }
     </style>
+    <style>
+    .box{
+        margin: 20px 0;
+    }
+    </style>
 </head>
 
 <body>
     <div id="app">
-
-        <g-button icon="setting" icon-position="right" :loading="loading1" @click="loading1=!loading1">
-            按钮
-        </g-button>
-        <g-button icon="setting" icon-position="left" :loading="loading2" @click="loading2=!loading2">
-            按钮
-        </g-button>
-
+        <div class="box">
+            <g-input value="张三"></g-input>
+            <g-input value="李四" disabled></g-input>
+            <g-input value="王五" readonly></g-input>
+        </div>
+        <div class="box">
+            <g-input value="丁少" error="姓名不合法"></g-input>
+        </div>
+        <div class="box">
+            <g-button icon="setting" icon-position="right" :loading="loading1" @click="loading1=!loading1">
+                按钮
+            </g-button>
+            <g-button icon="setting" icon-position="left" :loading="loading2" @click="loading2=!loading2">
+                按钮
+            </g-button>
+        </div>
         <g-button-group>
             <g-button icon="left" icon-position="left">
                 上一个
@@ -55,6 +68,8 @@
                 下一个
             </g-button>
         </g-button-group>
+
+
     </div>
 
     <script src="./src/app.js"></script>
