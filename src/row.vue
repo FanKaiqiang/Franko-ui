@@ -1,5 +1,5 @@
 <template>
-  <div class="row" :style="colStyle">
+  <div class="row" :style="rowStyle" :class="rowClass">
     <slot></slot>
   </div>
 </template>
@@ -7,21 +7,29 @@
 export default {
   name: "franko-row",
   props: {
-    gutter: [Number, String]
+    gutter: [Number, String],
+    align: {
+      type: String,
+      validator(value) {
+        return ["left", "right", "center"].includes(value);
+      }
+    }
   },
   mounted() {
-    console.log(this.$children);
     this.$children.forEach(vm => {
-      console.log(this.gutter);
       vm.gutter = this.gutter;
     });
   },
   computed: {
-    colStyle() {
+    rowStyle() {
       return {
         marginLeft: -this.gutter / 2 + "px",
         marginRight: -this.gutter / 2 + "px"
       };
+    },
+    rowClass() {
+      let { align } = this;
+      return [align && `align-${align}`];
     }
   }
 };
@@ -30,5 +38,14 @@ export default {
 .row {
   display: flex;
   flex-wrap: wrap;
+  &.align-left{
+    justify-content: flex-start;
+  }
+  &.align-right{
+    justify-content: flex-end;
+  }
+  &.align-center{
+    justify-content: center;
+  }
 }
 </style>
