@@ -24,17 +24,21 @@
             --border-color-hover: #dadada;
         }
 
-        #app {
+        /* #app {
             margin: 20px;
-        }
+        } */
 
         body {
             font-size: var(--font-size);
         }
     </style>
     <style>
-        .box {
+        /* .box {
             margin: 20px 0;
+        } */
+        .demo {
+            border: 1px solid red;
+            min-height: 100px;
         }
     </style>
 </head>
@@ -42,6 +46,17 @@
 <body>
     <div id="app">
         <div class="box">
+            <g-layout>
+                <g-sider class="demo">sider</g-sider>
+                <g-layout style="height: 100vh">
+                    <g-header class="demo">header</g-header>
+                    <g-content class="demo">content</g-content>
+                    <g-footer class="demo">footer</g-footer>
+                </g-layout>
+            </g-layout>
+
+        </div>
+        <!-- <div class="box">
             <g-row>
                 <g-col :span="2" :ipad="{span:12}" :narrow-pc="{span:14}"></g-col>
                 <g-col :span="20" :offset="2" :ipad="{span:10,offset:2}" :narrow-pc="{span:8,offset:1}"></g-col>
@@ -55,8 +70,8 @@
                 <g-col :span="12" :offset="1"></g-col>
                 <g-col :span="9" :offset="2"></g-col>
             </g-row>
-        </div>
-        <div class="box">
+        </div> -->
+        <!-- <div class="box">
             <g-input value="张三"></g-input>
             <g-input value="李四" disabled></g-input>
             <g-input value="王五" readonly></g-input>
@@ -85,11 +100,8 @@
             <g-button icon="right" icon-position="right">
                 下一个
             </g-button>
-        </g-button-group>
-
-
+        </g-button-group> -->
     </div>
-
     <script src="./src/app.js"></script>
 </body>
 
