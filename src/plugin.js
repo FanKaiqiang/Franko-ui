@@ -1,16 +1,10 @@
-import Vue from 'vue'
 import Toast from './toast'
 export default {
-  install(vue, options) {
+  install(Vue, options) {
     Vue.prototype.$toast = function (message,toastOptions) {
       let Constructor = Vue.extend(Toast)
       let toast = new Constructor({
-        propsData:{
-          autoClose:toastOptions.autoClose,
-          autoCloseDelay:toastOptions.autoCloseDelay,
-          closeButton:toastOptions.closeButton,
-          enableHTML:toastOptions.enableHTML
-        }
+        propsData:toastOptions
       })
       toast.$slots.default = [message]
       toast.$mount()

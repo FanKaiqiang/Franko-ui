@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" ref="wrapper">
+  <div class="toast" ref="wrapper" v-bind:class="toastClasses">
     <div class="wrapper">
       <div v-if="enableHTML" v-html="$slots.default[0]"></div>
       <slot v-else></slot>
@@ -13,12 +13,8 @@ export default {
   name: "franko-toast",
   props: {
     autoClose: {
-      type: Boolean,
-      default: false
-    },
-    autoCloseDelay: {
       type: Number,
-      default: 5
+      default: 0
     },
     closeButton: {
       type: Object,
@@ -32,13 +28,27 @@ export default {
     enableHTML: {
       type: Boolean,
       default: false
+    },
+    position: {
+      type: String,
+      default: "top",
+      validator(value) {
+        return ["top", "buttom", "middle"].indexOf(value) >= 0;
+      }
+    }
+  },
+  computed: {
+    toastClasses() {
+      return {
+        [`position-${this.position}`]: true
+      };
     }
   },
   mounted() {
     if (this.autoClose) {
       setTimeout(() => {
         this.close();
-      }, this.autoCloseDelay * 1000);
+      }, this.autoClose * 1000);
     }
     this.$nextTick(() => {
       this.$refs.line.style.height =
@@ -63,13 +73,16 @@ export default {
 $font-size: 14px;
 $toast-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
+@keyframes fade {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
 .toast {
+  animation: fade 1s;
   font-size: $font-size;
   min-height: $toast-height;
   line-height: 1.8;
   position: fixed;
-  top: 0;
-  left: 50%;
   transform: translateX(-50%);
   display: flex;
   color: white;
@@ -78,6 +91,18 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   border-radius: 4px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
   padding: 0 16px;
+  &.position-top {
+    top: 0;
+    left: 50%;
+  }
+  &.position-bottom {
+    bottom: 0;
+    left: 50%;
+  }
+  &.position-middle {
+    top: 50%;
+    left: 50%;
+  }
   > .wrapper {
     padding: 8px 0;
   }

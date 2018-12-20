@@ -42,16 +42,16 @@ new Vue({
       console.log(e)
     },
     showToast() {
-      this.$toast('来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯', {
+      this.$toast('<p>我是 message</p>', {
         closeButton: {
           text: '关掉我',
-          // callback() {
-          //   console.log('关掉我了')
-          // }
+          callback() {
+            console.log('关掉我了')
+          }
         },
-        autoClose: true,
-        // autoCloseDelay: 1,
-        // enableHTML: false
+        autoClose: 5,
+        enableHTML: true,
+        position: 'middle'
 
       })
     }
