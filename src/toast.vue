@@ -1,7 +1,9 @@
 <template>
   <div class="toast">
     <div class="wrapper">
-      <slot></slot>
+      <div v-if="enableHTML" v-html="$slots.default[0]"></div>
+      <slot v-else></slot>
+      
     </div>
     <div class="line"></div>
     <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
@@ -27,6 +29,10 @@ export default {
           callback: undefined
         };
       }
+    },
+    enableHTML:{
+      type: Boolean,
+      default:false
     }
   },
   mounted() {

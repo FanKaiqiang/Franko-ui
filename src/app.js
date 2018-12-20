@@ -42,7 +42,7 @@ new Vue({
       console.log(e)
     },
     showToast() {
-      this.$toast('来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯', {
+      this.$toast('来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯来咯', {
         closeButton: {
           text: '关掉我',
           callback() {
@@ -50,7 +50,9 @@ new Vue({
           }
         },
         autoClose: true,
-        autoCloseDelay: 1
+        // autoCloseDelay: 1,
+        // enableHTML: false
+
       })
     }
   }

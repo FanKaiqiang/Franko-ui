@@ -8,7 +8,8 @@ export default {
         propsData:{
           autoClose:toastOptions.autoClose,
           autoCloseDelay:toastOptions.autoCloseDelay,
-          closeButton:toastOptions.closeButton
+          closeButton:toastOptions.closeButton,
+          enableHTML:toastOptions.enableHTML
         }
       })
       toast.$slots.default = [message]
