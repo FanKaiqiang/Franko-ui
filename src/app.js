@@ -41,7 +41,16 @@ new Vue({
     inputChange(e) {
       console.log(e)
     },
-    showToast() {
+    showToast1(){
+      this.showToast('top')
+    },
+    showToast2(){
+      this.showToast('middle')
+    },
+    showToast3(){
+      this.showToast('bottom')
+    },
+    showToast(position) {
       this.$toast('<p>我是 message</p>', {
         closeButton: {
           text: '关掉我',
@@ -51,7 +60,7 @@ new Vue({
         },
         autoClose: 5,
         enableHTML: true,
-        position: 'middle'
+        position
 
       })
     }
