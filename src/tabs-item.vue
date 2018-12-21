@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx" :v-bind:class="classes">
+  <div class="tabs-item" @click="xxx" v-bind:class="classes">
     <slot></slot>
   </div>
 </template>
