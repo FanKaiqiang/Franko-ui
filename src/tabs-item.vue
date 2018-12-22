@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx" v-bind:class="classes">
+  <div class="tabs-item" @click="onClick" v-bind:class="classes">
     <slot></slot>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   props: {
     disabled: {
       type: String | Number,
-      default: true
+      default: false
     },
     name: {
       type: String | Number,
@@ -24,22 +24,22 @@ export default {
   },
   computed: {
     classes() {
-      return { active: this.active };
+      return { 
+        active: this.active,
+        disabled: this.disabled
+        };
     }
   },
   created() {
     this.eventBus.$on("update:selected", (name) => {
       this.active = name === this.name
-      if (name === this.name) {
-        console.log(`我${this.name}被选中了`);
-      } else {
-        console.log(`我${this.name}没被选中`);
-      }
     });
   },
   methods: {
-    xxx() {
-      this.eventBus.$emit("update:selected", this.name);
+    onClick() {
+      if(this.disabled){return}
+      this.eventBus.$emit("update:selected", this.name,this)
+      this.$emit('click',this)
     }
   }
 };
@@ -48,8 +48,18 @@ export default {
 .tabs-item {
   flex-shrink: 0;
   padding: 0 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
   &.active{
-    background: red;
+    color: #4A90E2;
+    font-weight: bold;
+  }
+  &.disabled{
+    color: grey;
+    cursor: not-allowed;
   }
 }
 </style>
