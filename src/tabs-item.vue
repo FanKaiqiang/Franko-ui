@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="onClick" v-bind:class="classes">
+  <div class="tabs-item" @click="onClick" v-bind:class="classes" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -24,22 +24,26 @@ export default {
   },
   computed: {
     classes() {
-      return { 
+      return {
         active: this.active,
         disabled: this.disabled
-        };
+      };
     }
   },
   created() {
-    this.eventBus.$on("update:selected", (name) => {
-      this.active = name === this.name
-    });
+    if (this.eventBus) {
+      this.eventBus.$on("update:selected", name => {
+        this.active = name === this.name;
+      });
+    }
   },
   methods: {
     onClick() {
-      if(this.disabled){return}
-      this.eventBus.$emit("update:selected", this.name,this)
-      this.$emit('click',this)
+      if (this.disabled) {
+        return;
+      }
+      this.eventBus.$emit("update:selected", this.name, this);
+      this.$emit("click", this);
     }
   }
 };
@@ -53,11 +57,11 @@ export default {
   align-items: center;
   cursor: pointer;
   user-select: none;
-  &.active{
-    color: #4A90E2;
+  &.active {
+    color: #4a90e2;
     font-weight: bold;
   }
-  &.disabled{
+  &.disabled {
     color: grey;
     cursor: not-allowed;
   }

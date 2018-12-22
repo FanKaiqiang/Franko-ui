@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs" v-bind:class="classes">
+  <div class="tabs">
     <slot></slot>
   </div>
 </template>
@@ -23,13 +23,6 @@ export default {
   data(){
     return{
       eventBus: new Vue()
-    }
-  },
-  computed:{
-    classes(){
-      return{
-        direction: this.direction
-      }
     }
   },
   provide(){
