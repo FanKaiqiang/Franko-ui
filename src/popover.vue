@@ -156,7 +156,6 @@ $popover-color: #ddd;
   word-break: break-all;
   background: white;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
-
   &::before,
   &::after {
     content: "";
@@ -166,44 +165,61 @@ $popover-color: #ddd;
     border: 10px solid transparent;
   }
 
-  @mixin row($row, $top, $Y) {
-    &.position-#{$row} {
-      margin-top: $top;
-      transform: translateY($Y);
-
-      &::before {
-        border-#{$row}: 10px solid $popover-color;
-        #{$row}: 100%;
-      }
-
-      &::after {
-        border-#{$row}: 10px solid white;
-        #{$row}: calc(100% - 1px);
-      }
+  &.position-top {
+    margin-top: -10px;
+    transform: translateY(-100%);
+    &::before {
+      border-top: 10px solid $popover-color;
+      border-bottom: none;
+      top: 100%;
+    }
+    &::after {
+      border-top: 10px solid white;
+      border-bottom: none;
+      top: calc(100% - 1px);
     }
   }
-
-  @mixin column($column, $left, $X) {
-    &.position-#{$column} {
-      margin-left: $left;
-      transform: translateX($X);
-
-      &::before {
-        border-#{$column}: 10px solid $popover-color;
-        #{$column}: 100%;
-      }
-
-      &::after {
-        border-#{$column}: 10px solid white;
-        top: calc(50% - 10px);
-        #{$column}: calc(100% - 1px);
-      }
+  &.position-bottom {
+    margin-top: 10px;
+    &::before {
+      border-bottom: 10px solid $popover-color;
+      border-top: none;
+      bottom: 100%;
+    }
+    &::after {
+      border-bottom: 10px solid white;
+      border-top: none;
+      bottom: calc(100% - 1px);
     }
   }
-
-  @include row(top, -10px, -100%);
-  @include row(bottom, 10px, 0%);
-  @include column(left, -10px, -100%);
-  @include column(right, 10px, 0%);
+  &.position-left {
+    margin-left: -10px;
+    transform: translateX(-100%);
+    &::before {
+      border-left: 10px solid $popover-color;
+      border-right: none;
+      left: 100%;
+    }
+    &::after {
+      border-left: 10px solid white;
+      border-right: none;
+      top: calc(50% - 10px);
+      left: calc(100% - 1px);
+    }
+  }
+  &.position-right {
+    margin-left: 10px;
+    &::before {
+      border-right: 10px solid $popover-color;
+      border-left: none;
+      right: 100%;
+    }
+    &::after {
+      border-right: 10px solid white;
+      border-left: none;
+      top: calc(50% - 10px);
+      right: calc(100% - 1px);
+    }
+  }
 }
 </style>
