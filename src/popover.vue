@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="onClick" ref="popover">
+  <div class="popover" ref="popover">
     <div
       ref="contentWrapper"
       class="content-wrapper"
@@ -24,12 +24,51 @@ export default {
       validator(value) {
         return ["top", "bottom", "left", "right"].indexOf(value) >= 0;
       }
+    },
+    trigger: {
+      type: String,
+      default: "click",
+      validator(value) {
+        return ["click", "hover"].indexOf(value) >= 0;
+      }
+    }
+  },
+  computed: {
+    openEvent() {
+      if (this.trigger === "click") {
+        return "click";
+      } else {
+        return "mouseenter";
+      }
+    },
+    closeEvent() {
+      if (this.trigger === "click") {
+        return "click";
+      } else {
+        return "mouseleave";
+      }
     }
   },
   data() {
     return {
       visible: false
     };
+  },
+  mounted() {
+    if (this.trigger === "click") {
+      this.$refs.popover.addEventListener("click", this.onClick);
+    } else {
+      this.$refs.popover.addEventListener(this.openEvent, this.open);
+      this.$refs.popover.addEventListener(this.closeEvent, this.close);
+    }
+  },
+  destroyed() {
+    if (this.trigger === "click") {
+      this.$refs.popover.removeEventListener("click", this.onClick);
+    } else {
+      this.$refs.popover.removeEventListener(this.openEvent, this.open);
+      this.$refs.popover.removeEventListener(this.closeEvent, this.close);
+    }
   },
   methods: {
     positionContent() {
@@ -60,6 +99,13 @@ export default {
     },
     onClickDocument(e) {
       if (
+        this.$refs.popover &&
+        (this.$refs.popover === e.target ||
+          this.$refs.popover.contains(e.target))
+      ) {
+        return;
+      }
+      if (
         this.$refs.contentWrapper &&
         (this.$refs.contentWrapper === e.target ||
           this.$refs.contentWrapper.contains(e.target))
@@ -72,12 +118,12 @@ export default {
       this.visible = true;
       this.$nextTick(() => {
         this.positionContent();
-        document.addEventListener("click", this.onClickDocument);
+        document.addEventListener(this.openEvent, this.onClickDocument);
       });
     },
     close() {
       this.visible = false;
-      document.removeEventListener("click", this.onClickDocument);
+      document.removeEventListener(this.closeEvent, this.onClickDocument);
     },
     onClick(event) {
       if (this.$refs.triggerWrapper.contains(event.target)) {
@@ -94,6 +140,7 @@ export default {
 
 <style lang="scss" scoped>
 $popover-color: #ddd;
+
 .popover {
   display: inline-block;
   vertical-align: top;
@@ -123,24 +170,29 @@ $popover-color: #ddd;
     &.position-#{$row} {
       margin-top: $top;
       transform: translateY($Y);
+
       &::before {
         border-#{$row}: 10px solid $popover-color;
         #{$row}: 100%;
       }
+
       &::after {
         border-#{$row}: 10px solid white;
         #{$row}: calc(100% - 1px);
       }
     }
   }
+
   @mixin column($column, $left, $X) {
     &.position-#{$column} {
       margin-left: $left;
       transform: translateX($X);
+
       &::before {
         border-#{$column}: 10px solid $popover-color;
         #{$column}: 100%;
       }
+
       &::after {
         border-#{$column}: 10px solid white;
         top: calc(50% - 10px);
@@ -148,10 +200,10 @@ $popover-color: #ddd;
       }
     }
   }
+
   @include row(top, -10px, -100%);
   @include row(bottom, 10px, 0%);
   @include column(left, -10px, -100%);
   @include column(right, 10px, 0%);
 }
-
 </style>
