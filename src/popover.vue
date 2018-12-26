@@ -119,56 +119,39 @@ $popover-color: #ddd;
     border: 10px solid transparent;
   }
 
-  &.position-top {
-    margin-top: -10px;
-    transform: translateY(-100%);
-    &::before {
-      border-top: 10px solid $popover-color;
-      top: 100%;
-    }
-    &::after {
-      border-top: 10px solid white;
-      top: calc(100% - 1px);
-    }
-  }
-
-  &.position-bottom {
-    margin-top: 10px;
-    &::before {
-      border-bottom: 10px solid $popover-color;
-      bottom: 100%;
-    }
-    &::after {
-      border-bottom: 10px solid white;
-      bottom: calc(100% - 1px);
+  @mixin row($row, $top, $Y) {
+    &.position-#{$row} {
+      margin-top: $top;
+      transform: translateY($Y);
+      &::before {
+        border-#{$row}: 10px solid $popover-color;
+        #{$row}: 100%;
+      }
+      &::after {
+        border-#{$row}: 10px solid white;
+        #{$row}: calc(100% - 1px);
+      }
     }
   }
-
-  &.position-left {
-    margin-left: -10px;
-    transform: translateX(-100%);
-    &::before {
-      border-left: 10px solid $popover-color;
-      left: 100%;
-    }
-    &::after {
-      border-left: 10px solid white;
-      top: calc(50% - 10px);
-      left: calc(100% - 1px);
-    }
-  }
-
-  &.position-right {
-    margin-left: 10px;
-    &::before {
-      border-right: 10px solid $popover-color;
-      right: 100%;
-    }
-    &::after {
-      border-right: 10px solid white;
-      top: calc(50% - 10px);
-      right: calc(100% - 1px);
+  @mixin column($column, $left, $X) {
+    &.position-#{$column} {
+      margin-left: $left;
+      transform: translateX($X);
+      &::before {
+        border-#{$column}: 10px solid $popover-color;
+        #{$column}: 100%;
+      }
+      &::after {
+        border-#{$column}: 10px solid white;
+        top: calc(50% - 10px);
+        #{$column}: calc(100% - 1px);
+      }
     }
   }
+  @include row(top, -10px, -100%);
+  @include row(bottom, 10px, 0%);
+  @include column(left, -10px, -100%);
+  @include column(right, 10px, 0%);
 }
+
 </style>
