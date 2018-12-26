@@ -33,36 +33,30 @@ export default {
   },
   methods: {
     positionContent() {
-      document.body.appendChild(this.$refs.contentWrapper);
-      let {
-        width,
-        height,
-        top,
-        left
-      } = this.$refs.triggerWrapper.getBoundingClientRect();
-      if (this.position === "top") {
-        this.$refs.contentWrapper.style.left = left + window.scrollX + "px";
-        this.$refs.contentWrapper.style.top = top + window.scrollY + "px";
-      } else if (this.position === "bottom") {
-        this.$refs.contentWrapper.style.left = left + window.scrollX + "px";
-        this.$refs.contentWrapper.style.top =
-          top + height + window.scrollY + "px";
-      } else if (this.position === "left") {
-        let {
-          height: height2
-        } = this.$refs.contentWrapper.getBoundingClientRect();
-        this.$refs.contentWrapper.style.left = left + window.scrollX + "px";
-        this.$refs.contentWrapper.style.top =
-          top + (height - height2) + window.scrollY + "px";
-      } else if (this.position === "right") {
-        let {
-          height: height2
-        } = this.$refs.contentWrapper.getBoundingClientRect();
-        this.$refs.contentWrapper.style.left =
-          left + width + window.scrollX + "px";
-        this.$refs.contentWrapper.style.top =
-          top + (height - height2) + window.scrollY + "px";
-      }
+      let { contentWrapper, triggerWrapper } = this.$refs;
+      document.body.appendChild(contentWrapper);
+      let { height: height2 } = contentWrapper.getBoundingClientRect();
+      let { width, height, top, left } = triggerWrapper.getBoundingClientRect();
+      let positions = {
+        top: {
+          left: left + window.scrollX,
+          top: top + window.scrollY
+        },
+        bottom: {
+          left: left + window.scrollX,
+          top: top + height + window.scrollY
+        },
+        left: {
+          left: left + window.scrollX,
+          top: top + (height - height2) + window.scrollY
+        },
+        right: {
+          left: left + width + window.scrollX,
+          top: top + (height - height2) + window.scrollY
+        }
+      };
+      contentWrapper.style.left = positions[this.position].left + "px";
+      contentWrapper.style.top = positions[this.position].top + "px";
     },
     onClickDocument(e) {
       if (
