@@ -4,19 +4,28 @@
   </div>
 </template>
 <script>
-// import Vue from 'vue'
+import Vue from 'vue'
 export default {
   name: "franko-collapse",
-  // data(){
-  //   return{
-  //     eventBus : new Vue()
-  //   }
-  // },
-  // provide(){
-  //   return{
-  //     eventBus:this.eventBus
-  //   }
-  // }
+  props:{
+    single:{
+      type:Boolean,
+      default:false
+    }
+  },
+  data(){
+    return{
+      eventBus : new Vue()
+    }
+  },
+  provide(){
+    if(!this.single){
+      return
+    }
+    return{
+      eventBus:this.eventBus
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
