@@ -48,7 +48,7 @@ new Vue({
   data: {
     // loading1: false,
     // loading2: true,
-    // selectedTab: 'three'
+    selectedTab: ['three']
   },
   created() {
 
