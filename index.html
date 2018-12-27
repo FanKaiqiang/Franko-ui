@@ -13,7 +13,7 @@
             box-sizing: border-box;
         }
 
-        :root {
+        /* :root {
             --button-height: 32px;
             --font-size: 14px;
             --button-bg: white;
@@ -22,15 +22,15 @@
             --color: #333;
             --border-color: #999;
             --border-color-hover: #dadada;
-        }
+        } */
 
         /* #app {
             margin: 20px;
         } */
 
-        body {
+        /* body {
             font-size: var(--font-size);
-        }
+        } */
     </style>
     <style>
         .box {
@@ -38,16 +38,23 @@
             margin: 100px 150px;
         }
 
-        .demo {
+        /* .demo {
             border: 1px solid red;
             min-height: 100px;
-        }
+        } */
     </style>
 </head>
 
 <body>
     <div id="app">
         <div class="box">
+            <g-collapse>
+                <g-collapse-item title="标题1">内容文字1</g-collapse-item>
+                <g-collapse-item title="标题2">内容文字2</g-collapse-item>
+                <g-collapse-item title="标题3">内容文字3</g-collapse-item>
+            </g-collapse>
+        </div>
+        <!-- <div class="box">
             <g-popover>
                 <template slot="content">
                     <div>popover内容</div>
@@ -98,7 +105,7 @@
                 </template>
                 <g-button>右边</g-button>
             </g-popover>
-        </div>
+        </div> -->
 
         <!-- <div class="box">
             <g-tabs :selected.sync="selectedTab">
@@ -115,9 +122,11 @@
                 </g-tabs-body>
             </g-tabs>
         </div> -->
+
         <!-- <button @click="showToast1">顶部</button>
         <button @click="showToast2">中部</button>
         <button @click="showToast3">底部</button> -->
+
         <!-- <div class="box">
             <g-layout>
                 <g-sider class="demo">sider</g-sider>
@@ -128,6 +137,7 @@
                 </g-layout>
             </g-layout>
         </div> -->
+
         <!-- <div class="box">
             <g-row>
                 <g-col :span="2" :ipad="{span:12}" :narrow-pc="{span:14}"></g-col>
@@ -143,6 +153,7 @@
                 <g-col :span="9" :offset="2"></g-col>
             </g-row>
         </div> -->
+
         <!-- <div class="box">
             <g-input value="张三"></g-input>
             <g-input value="李四" disabled></g-input>
