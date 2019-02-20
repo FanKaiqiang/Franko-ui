@@ -1,20 +1,19 @@
 <template>
   <button class="g-button" v-bind:class="{[`icon-${iconPosition}`]: true}" @click="$emit('click')">
     <g-icon class="loading icon" name="loading" v-if="loading"></g-icon>
-    <g-icon class="icon" v-if="icon && !loading" :name="icon">
-    </g-icon>
-    <div class="content">
+    <g-icon class="icon" v-if="icon && !loading" :name="icon"></g-icon>
+    <div class="g-content">
       <slot></slot>
     </div>
   </button>
 </template>
 
 <script>
-import Icon from './icon'
+import Icon from "./icon";
 export default {
-  name: 'franko-button',
-  components:{
-    'g-icon':Icon
+  name: "franko-button",
+  components: {
+    "g-icon": Icon
   },
   props: {
     icon: {},
@@ -27,30 +26,68 @@ export default {
     },
     loading: {
       type: Boolean,
-      default:false
+      default: false
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@keyframes spin{
-  0%{  transform: rotate(0deg);  }
-  100%{    transform: rotate(360deg);  }
+$button-height: 32px;
+$font-size: 14px;
+$button-bg: white;
+$button-active-bg: #eee;
+$border-radius: 4px;
+$color: #333;
+$border-color: #999;
+$border-color-hover: #dadada;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .g-button {
-  font-size: var(--font-size); height: var(--button-height); padding: 0 1em; border-radius: var(--border-radius);
-  border: 1px solid var(--border-color); background: var(--button-bg); display: inline-flex; 
-  justify-content: center; align-items: center; vertical-align: middle;
-  &:hover {  background-color: var(--border-color-hover); }
-  &:active {  background-color: var(--button-active-bg); }
-  &:focus {  outline: none; }
-  > .icon {  order: 1; margin-right: 0.1em;}
-  > .content {  order: 2; }
-  &.icon-right {
-    > .content {  order: 1; }
-    > .icon { order: 2; margin-right: 0; margin-left: 0.1em;}
+  font-size: $font-size;
+  height: $button-height;
+  padding: 0 1em;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background: $button-bg;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  &:hover {
+    background-color: $border-color-hover;
   }
-  .loading{  animation: spin 2s infinite linear; }
+  &:active {
+    background-color: $button-active-bg;
+  }
+  &:focus {
+    outline: none;
+  }
+  > .icon {
+    order: 1;
+    margin-right: 0.1em;
+  }
+  > .g-content {
+    order: 2;
+  }
+  &.icon-right {
+    > .g-content {
+      order: 1;
+    }
+    > .icon {
+      order: 2;
+      margin-right: 0;
+      margin-left: 0.1em;
+    }
+  }
+  .loading {
+    animation: spin 2s infinite linear;
+  }
 }
 </style>
