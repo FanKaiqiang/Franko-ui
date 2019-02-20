@@ -63,11 +63,15 @@ export default {
     }
   },
   destroyed() {
-    if (this.trigger === "click") {
-      this.$refs.popover.removeEventListener("click", this.onClick);
-    } else {
-      this.$refs.popover.removeEventListener(this.openEvent, this.open);
-      this.$refs.popover.removeEventListener(this.closeEvent, this.close);
+    let popover = document.querySelector('.content-wrapper')
+    popover.parentNode.removeChild(popover);
+    if (this.$refs.popover) {
+      if (this.trigger === "click") {
+        this.$refs.popover.removeEventListener("click", this.onClick);
+      } else {
+        this.$refs.popover.removeEventListener(this.openEvent, this.open);
+        this.$refs.popover.removeEventListener(this.closeEvent, this.close);
+      }
     }
   },
   methods: {
@@ -116,6 +120,7 @@ export default {
     },
     open() {
       this.visible = true;
+      console.log('展示')
       this.$nextTick(() => {
         this.positionContent();
         document.addEventListener(this.openEvent, this.onClickDocument);
@@ -123,6 +128,7 @@ export default {
     },
     close() {
       this.visible = false;
+      console.log('关闭')
       document.removeEventListener(this.closeEvent, this.onClickDocument);
     },
     onClick(event) {
