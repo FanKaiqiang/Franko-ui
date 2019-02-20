@@ -60,6 +60,7 @@ export default {
   &.active {
     color: #4a90e2;
     font-weight: bold;
+    border-bottom: 1px solid #4a90e2;
   }
   &.disabled {
     color: grey;

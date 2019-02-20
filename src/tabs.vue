@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs">
+  <div class="tabs" >
     <slot></slot>
   </div>
 </template>
@@ -11,13 +11,6 @@ export default {
     selected: {
       type: String,
       required: true
-    },
-    direction: {
-      type: String,
-      default: 'column',
-      validator(value){
-        return ['column','row'].indexOf(value) >= 0
-      }
     }
   },
   data(){
