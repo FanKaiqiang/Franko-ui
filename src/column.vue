@@ -80,10 +80,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .column {
   > .inner {
-    height: 100px;
-    border: 1px solid red;
+    height: 36px;
+    background: #D3DCE6;
+    border: 1px solid #99A9BF;
+    border-radius: 4px;
   }
 
   @mixin screen($span, $offset) {

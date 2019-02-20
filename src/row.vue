@@ -38,6 +38,7 @@ export default {
 .row {
   display: flex;
   flex-wrap: wrap;
+  margin: 10px 0;
   &.align-left{
     justify-content: flex-start;
   }
