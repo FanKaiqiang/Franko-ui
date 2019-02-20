@@ -13,7 +13,8 @@ export default {
       default: false
     },
     selected: {
-      type: Array
+      type: Array,
+      required: true
     }
   },
   data() {
