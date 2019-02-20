@@ -43,7 +43,7 @@ Button 组件的 `icon-position` 属性用于控制图标在按键中的位置�
 <ClientOnly><button-demo3></button-demo3></ClientOnly>
 
 ``` html
-<div class="box">
+<div id="app">
   <f-button loading="true" >左边</f-button>
   <f-button loading="true" icon-position="right">右边</f-button>
   <f-button :loading="loading" @click="loading = !loading">点击加载</f-button>
@@ -52,6 +52,7 @@ Button 组件的 `icon-position` 属性用于控制图标在按键中的位置�
 import {Button} from 'franko-ui'
 import Vue from 'vue'
 new Vue( {
+  el: '#app',
   components: {
     "f-button": Button
   },

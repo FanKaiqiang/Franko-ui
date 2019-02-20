@@ -36,20 +36,19 @@ Input 组件可以让用户通过鼠标或键盘输入字符。为输入框设�
 <ClientOnly><input-demo3></input-demo3></ClientOnly>
 
 ``` html
-<div>
-  <div>
-    <div class="box">
-      <f-input value="默认效果" error></f-input>
-      <f-input value="警告效果" error="警告信息"></f-input>
-    </div>
-    <f-input tip="请输入数字" :value="text" :error="errorText" @input="inputChange">
-    </f-input>
+<div id="app">
+  <div class="box">
+    <f-input value="默认效果" error></f-input>
+    <f-input value="警告效果" error="警告信息"></f-input>
   </div>
+  <f-input tip="请输入数字" :value="text" :error="errorText" @input="inputChange">
+  </f-input>
 </div>
 <script>
 import {Input} from 'franko-ui'
 import Vue from 'vue'
 new Vue({
+  el: '#app',
   components: {
     "f-input": Input
   },
@@ -77,7 +76,7 @@ new Vue({
 
 <ClientOnly><input-demo4></input-demo4></ClientOnly>
 ``` html
-<div>
+<div id="app">
   <div class="box">
     <f-input tip="change事件与input事件" @change="change" @input="input"></f-input>
     {{text1}}
@@ -91,6 +90,7 @@ new Vue({
 import {Input} from 'franko-ui'
 import Vue from 'vue'
 new Vue({
+  el: '#app',
   components: {
     "f-input": Input
   },
