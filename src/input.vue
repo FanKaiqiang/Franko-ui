@@ -5,6 +5,7 @@
     @input="$emit('input',$event.target.value)"
     @focus="$emit('focus',$event.target.value)"
     @blur="$emit('blur',$event.target.value)"
+    :placeholder="tip"
     >
     <template v-if="error">
       <g-icon name="error" class="icon-error"></g-icon>
@@ -23,6 +24,9 @@ export default {
   props:{
     value:{
       type: String
+    },
+    tip:{
+      type:String
     },
     disabled:{
       type: Boolean,
