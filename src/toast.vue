@@ -36,7 +36,7 @@ export default {
       type: String,
       default: "top",
       validator(value) {
-        return ["top", "buttom", "middle"].indexOf(value) >= 0;
+        return ["top", "bottom", "middle"].indexOf(value) >= 0;
       }
     }
   },
