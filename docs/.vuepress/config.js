@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  base: '/franko-ui/',
+  base: '/Franko-ui/',
   title: 'Franko UI',
   description: '一个好用的UI框架',
   themeConfig: {
