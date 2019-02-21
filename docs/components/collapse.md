@@ -11,11 +11,11 @@ Collapse 组件的默认效果即可同时展开多个面板，且面板之间�
 
 ``` html
   <div class="box">
-    <g-collapse :selected="['one','two','three']">
-      <g-collapse-item title="标题1" name="one">内容文字1</g-collapse-item>
-      <g-collapse-item title="标题2" name="two">内容文字2</g-collapse-item>
-      <g-collapse-item title="标题3" name="three">内容文字3</g-collapse-item>
-    </g-collapse>
+    <f-collapse :selected="['one','two','three']">
+      <f-collapse-item title="标题1" name="one">内容文字1</f-collapse-item>
+      <f-collapse-item title="标题2" name="two">内容文字2</f-collapse-item>
+      <f-collapse-item title="标题3" name="three">内容文字3</f-collapse-item>
+    </f-collapse>
   </div>
 ```
 ### 手风琴效果
@@ -25,10 +25,10 @@ Collapse 组件的 `single` 属性用于设定面板是否每次只能展开一�
 
 ``` html
   <div class="box">
-    <g-collapse :selected="['two']" single>
-      <g-collapse-item title="标题1" name="one">内容文字1</g-collapse-item>
-      <g-collapse-item title="标题2" name="two">内容文字2</g-collapse-item>
-      <g-collapse-item title="标题3" name="three">内容文字3</g-collapse-item>
-    </g-collapse>
+    <f-collapse :selected="['two']" single>
+      <f-collapse-item title="标题1" name="one">内容文字1</f-collapse-item>
+      <f-collapse-item title="标题2" name="two">内容文字2</f-collapse-item>
+      <f-collapse-item title="标题3" name="three">内容文字3</f-collapse-item>
+    </f-collapse>
   </div>
 ```
